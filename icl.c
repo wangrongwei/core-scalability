@@ -7,7 +7,7 @@
  * gcc -O3 -DNDEBUG icl.c -o icl -pthread
  *
  * Plot results using gnuplot:
- * $ ./icl -p | gnuplot -p
+ * $ ./icl -p | gnuplot
  */
 
 #define _GNU_SOURCE
@@ -255,6 +255,7 @@ usage:
 	}
 
 	if (plot) {
+		printf("set terminal pngcairo size 800,600 enhanced font \"Verdana,10\"\n");
 		printf
 		    ("set title \"%s%sInter-core one-way %s latency between CPU cores\"\n",
 		     (name ? name : ""), (name ? " : " : ""),
@@ -262,6 +263,7 @@ usage:
 		printf("set xlabel \"CPU\"\n");
 		printf("set ylabel \"CPU\"\n");
 		printf("set cblabel \"Latency (ns)\"\n");
+		printf("set output 'heatmap.png'\n");
 		printf("$data << EOD\n");
 	}
 
