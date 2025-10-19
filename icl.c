@@ -255,15 +255,14 @@ usage:
 	}
 
 	if (plot) {
-		printf("set terminal pngcairo size 800,600 enhanced font \"Verdana,10\"\n");
-		printf
-		    ("set title \"%s%sInter-core one-way %s latency between CPU cores\"\n",
+		printf("set terminal pngcairo size %d,%d enhanced font \"Verdana,10\"\n", ncpus * 32 + 600, ncpus * 32 + 600);
+		printf("set title \"%s%sInter-core one-way %s latency between CPU cores\"\n",
 		     (name ? name : ""), (name ? " : " : ""),
 		     (use_write ? "write" : "data"));
 		printf("set xlabel \"CPU\"\n");
 		printf("set ylabel \"CPU\"\n");
 		printf("set cblabel \"Latency (ns)\"\n");
-		printf("set output 'heatmap.png'\n");
+		printf("set output 'heatmap_%dcores.png'\n", ncpus);
 		printf("$data << EOD\n");
 	}
 
